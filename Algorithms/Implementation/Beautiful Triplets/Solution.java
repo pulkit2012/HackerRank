@@ -5,38 +5,30 @@ import java.util.*;
 
 public class Solution {
 
+    static boolean contains(int a,int[] arr){
+        boolean temp = false;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == a){
+                temp = true;
+                break;
+            }
+        }
+        return temp;
+    }
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();
         int d = input.nextInt();
-        
-        Set<Integer>  values = new HashSet<>();
-        
+        int[] arr = new int[n];
         int beautifulTriplets = 0;
-        
-        
-        //Build a set
-        for(int i = 0; i < n; i++)
-        {
-            int x = input.nextInt();
-            
-            if(!values.contains(x))
-            {
-                values.add(x);
-            }
+        for (int i = 0; i < n; i++) {
+            arr[i] = input.nextInt();
         }
-        
-        
-        //Check if set has a value, value+d, and value + 2d
-        for(Integer digit : values)
-        {
-            if(values.contains(digit+d) && values.contains(digit+(2*d)))
-            {
+        for (Integer digit : arr) {
+            if (contains(digit + d,arr) && contains(digit + (2 * d),arr)) {
                 beautifulTriplets++;
             }
         }
-        
         System.out.println(beautifulTriplets);
     }
 }
